@@ -195,7 +195,7 @@ def train_model():
     print("\n[SERVER] Generating data...")
     normal=generate_normal(800); anomalous=generate_anomalous(150)
     model=AutoencoderNumPy(input_dim=3,lr=0.005)
-    losses=model.train(normal,epochs=80,batch_size=32); loss_log=losses
+    losses=model.train(normal,epochs=20,batch_size=32); loss_log=losses
     normal_mses=[model.predict_mse(x) for x in normal[:50]]
     anomaly_mses=[model.predict_mse(x) for x in anomalous[:50]]
     threshold=np.percentile(normal_mses,95)
