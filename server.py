@@ -9,6 +9,7 @@ from flask_cors import CORS
 import numpy as np
 import math, threading
 from flask import send_file
+import os
 
 
 app = Flask(__name__)
@@ -213,7 +214,8 @@ def train_model():
 # ROUTES
 # ─────────────────────────────────────────
 @app.route('/')
-def index(): return jsonify({'status':'DigiTwin.AI backend','trained':training_status['done']})
+def index():
+    return send_file('DigiTwin_Dashboard_v2.html')
 
 @app.route('/status')
 def status(): return jsonify(training_status)
