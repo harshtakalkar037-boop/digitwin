@@ -249,6 +249,10 @@ def live_history(): return jsonify({'history':live_sim.history})
 def dashboard():
     return send_file('DigiTwin_Dashboard_v2.html')
 
+with app.app_context():
+    threading.Thread(target=train_model, daemon=True).start()
+
+
 if __name__=='__main__':
     print("\n"+"="*55)
     print("  DigiTwin.AI — Backend Server")
