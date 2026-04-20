@@ -10,9 +10,6 @@ import numpy as np
 import math, threading
 from flask import send_file
 
-@app.route('/dashboard')
-def dashboard():
-    return send_file('DigiTwin_Dashboard_v2.html')
 
 app = Flask(__name__)
 CORS(app)
@@ -247,6 +244,10 @@ def set_mode(mode):
 
 @app.route('/live/history')
 def live_history(): return jsonify({'history':live_sim.history})
+
+@app.route('/dashboard')
+def dashboard():
+    return send_file('DigiTwin_Dashboard_v2.html')
 
 if __name__=='__main__':
     print("\n"+"="*55)
