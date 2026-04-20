@@ -8,6 +8,11 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import numpy as np
 import math, threading
+from flask import send_file
+
+@app.route('/dashboard')
+def dashboard():
+    return send_file('DigiTwin_Dashboard_v2.html')
 
 app = Flask(__name__)
 CORS(app)
@@ -251,4 +256,4 @@ if __name__=='__main__':
     threading.Thread(target=train_model,daemon=True).start()
     print("\n[SERVER] Training in background... API at http://localhost:5000")
     print("[SERVER] Dashboard auto-connects after training (~15s)\n")
-    app.run(debug=False,port=5000,threaded=True)
+    app.run(debug=False, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), threaded=True)
